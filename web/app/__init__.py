@@ -9,8 +9,13 @@ app.config.from_object('config.DevelopmentConfig')
 
 app.secret_key = app.config.get('SECRET_KEY')
 
-queue_client = QueueClient.from_connection_string(app.config.get('SERVICE_BUS_CONNECTION_STRING'),
-                                                 app.config.get('SERVICE_BUS_QUEUE_NAME'))
+service = app.config.get('SERVICE_BUS_CONNECTION_STRING')
+bus_queue = app.config.get('SERVICE_BUS_QUEUE_NAME')
+
+# queue_client = QueueClient.from_connection_string(app.config.get('SERVICE_BUS_CONNECTION_STRING'),
+#                                                  app.config.get('SERVICE_BUS_QUEUE_NAME'))
+
+queue_client = ''   # Valor sólo para test local sin usar Azure
 
 db = SQLAlchemy(app)
 
