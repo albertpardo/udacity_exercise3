@@ -102,15 +102,15 @@ def notification():
             #################################################
             
             # # # TODO Call servicebus queue_client to enqueue notification ID
-            # logging.debug(' ---> queue_client : {}'. format(queue_client))
-            # logging.debug('--> Creting MSG . ID = {}'. format(notification_id))
-            # msg = Message('{}'.format(notification_id))
-            # logging.debug('--> Sendindg MSG')
-            # queue_client.send(msg)
+            logging.debug(' ---> queue_client : {}'. format(queue_client))
+            logging.debug('--> Creting MSG . ID = {}'. format(notification_id))
+            msg = Message('{}'.format(notification_id))
+            logging.debug('--> Sendindg MSG')
+            queue_client.send(msg)
 
-            # logging.debug('--> Notification QUEUED')
+            logging.debug('--> Notification QUEUED')
             
-            my_test_func(notification_id)
+            # my_test_func(notification_id)
 
 
             return redirect('/Notifications')

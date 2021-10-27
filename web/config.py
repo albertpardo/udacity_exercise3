@@ -17,7 +17,7 @@ class BaseConfig:
     CONFERENCE_ID = 1
     SECRET_KEY = 'LWd2tzlprdGHCIPHTd4tp5SBFgDszm'
     
-    SERVICE_BUS_CONNECTION_STRING ='' #TODO: Update value
+    SERVICE_BUS_CONNECTION_STRING ='Endpoint=sb://migrate-app-bus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Od2KWfJZf9e3f+I47mNXYh6MQixRt3Sgow2m5xeUO2c=' #TODO: Update value
     SERVICE_BUS_QUEUE_NAME ='notificationqueue'
     
     ADMIN_EMAIL_ADDRESS = 'albertopardomarti@gmail.com'
