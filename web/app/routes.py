@@ -87,15 +87,15 @@ def notification():
             ## TODO: Refactor This logic into an Azure Function
             ## Code below will be replaced by a message queue
             #################################################
-            attendees = Attendee.query.all()
+            # attendees = Attendee.query.all()
 
-            for attendee in attendees:
-                subject = '{}: {}'.format(attendee.first_name, notification.subject)
-                send_email(attendee.email, subject, notification.message)
+            # for attendee in attendees:
+            #     subject = '{}: {}'.format(attendee.first_name, notification.subject)
+            #     send_email(attendee.email, subject, notification.message)
 
-            notification.completed_date = datetime.utcnow()
-            notification.status = 'Notified {} attendees'.format(len(attendees))
-            db.session.commit()
+            # notification.completed_date = datetime.utcnow()
+            # notification.status = 'Notified {} attendees'.format(len(attendees))
+            # db.session.commit()
 
             #################################################
             ## END of TODO
@@ -110,7 +110,7 @@ def notification():
 
             # logging.debug('--> Notification QUEUED')
             
-            # my_test_func(notification_id)
+            my_test_func(notification_id)
 
 
             return redirect('/Notifications')
