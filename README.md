@@ -62,10 +62,36 @@ You will need to install the following locally:
 Complete a month cost analysis of each Azure resource to give an estimate total cost using the table below:
 
 | Azure Resource | Service Tier | Monthly Cost |
-| ------------ | ------------ | ------------ |
-| *Azure Postgres Database* |     |              |
-| *Azure Service Bus*   |         |              |
-| ...                   |         |              |
+| :------------ | :------------: | ------------: |
+| *Azure Postgres Database* |  BASIC with Compute (Gen 5, 2 vCore) and storage of 5GB   |  $50.14  |
+| *Azure Service Bus*       | BASIC   | (per million operation) $0.0500  |
+| *APP Service*             | BASIC (B1: 1 Core , 1.75GB Ram, 10GB storage) |   $12.4100 |
+| *Azure Functions*         | Consumption (The first 400,000 GB/s of execution and 1,000,000 executions are free.) | $ 0.0000    |
+| *Storage Account : QUEUE*     |  General Purpose v1 Storage Capacity LRS | per GB  $0.045    |
+| *Storage Account : QUEUE*     |  General Purpose v1 Queue Class 1(1) operations (in 10,000) |   $0.0004    |
+| *Storage Account : QUEUE*     |  General Purpose v1 Queue Class 2(2) operations (in 10,000) |   $0.0004    |
+| *Send grid* (3)         |  Essential  40K (limit 50,000 emails/month)  |  $14.9500  |
+
+Notes:
+* (1) The following Queue operations are counted as Class 1: CreateQueue, ListQueues, PutMessage, SetQueueMetadata, UpdateMessage, ClearMessages, DeleteMessage, DeleteQueue, GetMessageWrite, GetMessagesWrite
+* (2) The following Queue operations are counted as Class 2: GetMessage, GetMessages, GetQueueMetadata, GetQueueServiceProperties, GetQueueAcl, PeekMessage, PeekMessages, GetMessageRead, GetMessagesRead
+* (3) [Send grid Pricing](https://sendgrid.com/pricing/)
 
 ## Architecture Explanation
 This is a placeholder section where you can provide an explanation and reasoning for your architecture selection for both the Azure Web App and Azure Function.
+
+### My Explanation / Reasoning
+
+This migration helps to solve the main problems : 
+1. No scalability for the actual web app
+1. Some HTTP timeout exceptions when a new notification is added. Because the actual web app serve HTTP requests at the same time it sends a lot of mails.
+1. Cost problems.
+
+
+#### Solutions:
+
+1. Scalability: Azure lets scale the web app in function of the HTTP requests. 
+1. Better Performance. Azure function lets create a decoupled application. Send emails can be done in a independent way to the Web app.
+1. Cost Management. Azure Web App and Azure Function lets easily control the hardware needs in function of the demand and let us only pay per use. In addition, Azure lets save time for hardware and software maintenance.
+
+
